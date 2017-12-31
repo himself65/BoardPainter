@@ -34,7 +34,6 @@ if __name__:
             color = luogu.get_color(im.getpixel((i,j)))
             postdata = luogu.paintData(x,y,color)
             op = opener.open(posturl,postdata)
-            op = 
             print(cookie)
             data = op.read()
             while luogu.check(data) == True:
