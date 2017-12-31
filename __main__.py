@@ -1,11 +1,9 @@
 import ssl
 import time
-
+import urllib
 from PIL import Image
 
 import luogu
-
-ssl._create_default_https_context = ssl._create_unverified_context
 
 url = "https://www.luogu.org/paintBoard"
 posturl = "https://www.luogu.org/paintBoard/paint"
@@ -15,12 +13,12 @@ header = {}
 header['user-agent'] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36"
 header['accept-encoding'] = "gzip, deflate, br"
 header['accept-language'] = "zh,en;q=0.9,zh-CN;q=0.8,ja;q=0.7"
-
+old_header = header
 # cookie
 header['cookie'] = luogu.get_cookie()
 opener = luogu.getOpener(header)
-
 if __name__:
+    ssl._create_default_https_context = ssl._create_unverified_context
     print("注意:\n时常更换cookie")
     print("当前cookie: " + header['cookie'])
     ###
@@ -36,6 +34,8 @@ if __name__:
             color = luogu.get_color(im.getpixel((i,j)))
             postdata = luogu.paintData(x,y,color)
             op = opener.open(posturl,postdata)
+            op = 
+            print(cookie)
             data = op.read()
             while luogu.check(data) == True:
                 count += 1
@@ -49,7 +49,8 @@ if __name__:
                 failtime += 1
                 print("失败提交 "+ str(failtime) + "次")
             y += 1
-            luogu.save(height,width+1,x,y,cookie) # width得手动+1
+
+            luogu.save(i,j+1,x,y,cookie) # width得手动+1
             time.sleep(30)
         x += 1
     
