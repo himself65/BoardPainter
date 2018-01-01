@@ -45,7 +45,7 @@ colors = {
 }
 
 def get_color(pixel):
-    return min_color_diff(pixel, colors)
+    return min_color_diff(pixel, colors)[1]
 
 def ungzip(data):
     try:
